@@ -8,7 +8,9 @@ const graphqlHTTP = require('express-graphql')
 // this is done by using graphqlHTTP as a middleware on a single route which will serve as an end point to communicate with our graphql data.
 app.use('/graphql', graphqlHTTP({
 // graphqlHTTP must contain a schema of how the graph of our data looks(structure, datatype and relationship.)
-schema:schema
+schema:schema,
+// to use the graphiql tool to test request to data on our graphql server
+graphiql: true
 }))
 
 

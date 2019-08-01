@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const schema = require('./schema/schema')
+const _ = require('lodash')
 
 // we set up an express server that runs graphql api
 const graphqlHTTP = require('express-graphql')

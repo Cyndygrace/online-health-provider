@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const schema = require('./schema/schema')
 
 // we set up an express server that runs graphql api
 const graphqlHTTP = require('express-graphql')
@@ -8,6 +8,7 @@ const graphqlHTTP = require('express-graphql')
 // this is done by using graphqlHTTP as a middleware on a single route which will serve as an end point to communicate with our graphql data.
 app.use('/graphql', graphqlHTTP({
 // graphqlHTTP must contain a schema of how the graph of our data looks(structure, datatype and relationship.)
+schema:schema
 }))
 
 

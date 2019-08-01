@@ -3,10 +3,7 @@ const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLBoolean,
-  GraphQLID,
   GraphQLList,
-  GraphQLNonNull,
   GraphQLInt,
   GraphQLSchema
 } = graphql;
@@ -27,6 +24,7 @@ const ServiceType = new GraphQLObjectType({
 });
 
 // 1. define types, 2. define relationship between types, 3. define the root query that connects the route to the data
+// defines how we jump into the graph
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -34,8 +32,10 @@ const RootQuery = new GraphQLObjectType({
     service: {
       // type of query
       type: ServiceType,
+      // looks for this id
       args: {id: {type:GraphQLString}},
-      resolve:(parent, args) {
+      // uses the id to resolve this function
+      resolve:(parent, args) => {
         // resolved code
       }
     }
@@ -43,5 +43,6 @@ const RootQuery = new GraphQLObjectType({
 });
 
 module.exports = new GraphQLSchema({
+  // the query we are allowing the user to use when they are making request from the front end
   query: RootQuery
 })

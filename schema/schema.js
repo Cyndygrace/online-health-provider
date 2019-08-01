@@ -10,7 +10,7 @@ const {
 
 // define a type
 const ServiceType = new GraphQLObjectType({
-  name: 'Service',
+  name: 'Services',
   fields: () => ({
     id: { type: GraphQLString },
     professionalTitle: { type: GraphQLString },
@@ -29,14 +29,16 @@ const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     // which query
-    service: {
+    services: {
       // type of query
       type: ServiceType,
       // looks for this id
       args: {id: {type:GraphQLString}},
       // uses the id to resolve this function
       resolve:(parent, args) => {
-        // resolved code
+        // code to get services from sql or noSql db/ other sources
+        // using lodash
+        return _.find(Services, {id:args.id})
       }
     }
   }
